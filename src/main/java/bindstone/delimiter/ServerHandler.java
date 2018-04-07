@@ -1,6 +1,7 @@
 package bindstone.delimiter;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
@@ -16,6 +17,8 @@ public class ServerHandler extends ChannelHandlerAdapter {
         // System.out.println(new String(buffer));
         System.out.println((String)msg);
         ctx.channel().writeAndFlush("Hi Client I'm Server !&&");
+        //采用短连接，也就是写完毕立刻关闭连接
+        // ctx.channel().writeAndFlush("Hi Client I'm Server !&&").addListener(ChannelFutureListener.CLOSE);
     }
 
     @Override
